@@ -11,10 +11,7 @@ func main() {
 
 	mux := http.NewServeMux() // http request multiplexer (router)
 
-	// Catch all route to return 404 for any path
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.NotFound(w, r)
-	})
+	mux.Handle("/", http.FileServer(http.Dir("."))) // Server files on root dir
 
 	server := &http.Server{
 		Addr:    ":" + port,
