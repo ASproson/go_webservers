@@ -8,10 +8,11 @@ import (
 
 func main() {
 	const port = "8080"
+	const filePathRoot = "."
 
 	mux := http.NewServeMux() // http request multiplexer (router)
 
-	mux.Handle("/", http.FileServer(http.Dir("."))) // Server files on root dir
+	mux.Handle("/", http.FileServer(http.Dir(filePathRoot))) // Server files on root dir
 
 	server := &http.Server{
 		Addr:    ":" + port,
